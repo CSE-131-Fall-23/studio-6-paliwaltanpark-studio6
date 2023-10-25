@@ -12,24 +12,48 @@ public class RecursiveMethods {
 	 *         ...)
 	 */
 	public static double geometricSum(int n) {
-		
-			// FIXME compute the geometric sum for the first n terms recursively
+		if (n == 1) {
+			return 0.5; 
+		}
+		else if (n == 0) {
 			return 0;
-		
+		}
+		else {
+			double number = 0; 
+			number = 1/(Math.pow(2, n));
+			return number + geometricSum(n - 1);
+			// FIXME compute the geometric sum for the first n terms recursively
+		}
 	}
 
 	/**
-	 * This method uses recursion to compute the greatest common divisor
+	 * This method uses recursion to compute the grearadiusMinimumDrawingThreshold common divisor
 	 * for the two input values
 	 * 
 	 * @param p first operand
 	 * @param q second operand
-	 * @return greatest common divisor of p and q
+	 * @return grearadiusMinimumDrawingThreshold common divisor of p and q
 	 */
 	public static int gcd(int p, int q) {
-		
+		int[] array1 = new int[q];
+		boolean[] array2 = new boolean[q];
+		for (int i = 0; (i < p && i < q); i++) {
+			array1[i] = i;
+			if ((p % i == 0) && (q % i == 0)) {
+				array2[i] = true;
+			}	
+		}
+		System.out.println(" ");
+		for (int i = 0; (i < p && i < q); i++) {
+			if (array2[i] == true) {
+				System.out.print(array2[i]);
+				return i;
+			}
+		}
+		return 0;
+	
 			// FIXME compute the gcd of p and q using recursion
-			return 0;
+			
 		
 	}
 
@@ -42,7 +66,9 @@ public class RecursiveMethods {
 	 * @return an array with the same data as the input but it reverse order
 	 */
 	public static int[] toReversed(int[] array) {
-		
+		if (array.length == 1) {
+			return array[0];
+		}
 			// FIXME create a helper method that can recursively reverse the given array
 			return new int[0];
 		
@@ -59,7 +85,15 @@ public class RecursiveMethods {
 	 */
 	public static void circlesUponCircles(double xCenter, double yCenter, double radius,
 			double radiusMinimumDrawingThreshold) {
-		
+		if (radius == 0.5) {
+			StdDraw.filledCircle(0.5, 0.5, radiusMinimumDrawingThreshold);
+		}
+		else {
+			StdDraw.filledCircle((0.5 - (radiusMinimumDrawingThreshold * radius)), 0.5, (radiusMinimumDrawingThreshold / 2));
+			StdDraw.filledCircle((0.5 + (radiusMinimumDrawingThreshold * radius)), 0.5, (radiusMinimumDrawingThreshold / 2));
+			StdDraw.filledCircle(0.5, (0.5 - (radiusMinimumDrawingThreshold * radius)), (radiusMinimumDrawingThreshold / 2));
+			StdDraw.filledCircle(0.5, (0.5 + (radiusMinimumDrawingThreshold * radius)), (radiusMinimumDrawingThreshold / 2));
+		}
 		// FIXME
 	}
 
